@@ -1,13 +1,93 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Roboto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  background-color: #e5e5e5;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.manageSkills {
+  width: 80vw;
+  background: #ffffff;
+  /* box shadow */
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+  border-radius: 4px;
+  padding: 1rem 3rem;
+}
+
+.checked path {
+  fill: blue;
+}
+
+.heading {
+  font-size: 20px;
+  font-weight: 600;
+  color: #192a3e;
+}
+.pageTitle {
+  margin-bottom: 50px;
+  font-size: 25px;
+}
+.pagedesc {
+  font-size: 17px;
+  font-weight: 600;
+  color: #192a3e;
+  margin-bottom: 3px;
+}
+.textSmall {
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.54;
+}
+
+.skillFormCont {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+.basic-multi-select {
+  flex-grow: 1;
+  margin-right: 10px;
+  font-weight: 600;
+  font-size: 16px;
+}
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 14px;
+  background: #f05d23;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn {
+  transition: all 0.4s ease-out;
+}
+
+.plusIcon {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.skillsList {
+  display: grid;
+  grid-gap: 10px;
 }
