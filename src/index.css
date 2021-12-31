@@ -91,3 +91,103 @@ body {
   display: grid;
   grid-gap: 10px;
 }
+
+.skillCont {
+  display: grid;
+}
+.skillCont .section1 {
+  display: grid;
+  grid-template-columns: 150px 200px;
+  align-items: baseline;
+  margin-bottom: 20px;
+}
+.skillCont .section2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  grid-gap: 25px;
+}
+input[type="checkbox"] {
+  margin-right: 5px;
+  display: inline-block;
+}
+
+ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 6px;
+}
+.skillLevel li {
+  position: relative;
+}
+input[type="radio"] {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  /* display: none; */
+  opacity: 0;
+}
+.skillLevel div {
+  font-size: 12px;
+  opacity: 0.54;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 10px;
+  color: #757575;
+}
+
+.beginner path:not(:first-child) {
+  fill: #192a3e;
+}
+.beginner path:nth-child(first) {
+  fill: #192a3e;
+  opacity: 0.15;
+}
+
+.advanced path:not(:first-child) {
+  fill: #8d2f68;
+}
+
+.advanced path:first-child {
+  fill: #8d2f68;
+  opacity: 0.15;
+}
+
+.expert path:not(:first-child) {
+  fill: #4482fd;
+}
+
+.expert path:first-child {
+  fill: #4482fd;
+  opacity: 0.15;
+}
+
+.master path:not(:first-child) {
+  fill: #03a685;
+}
+
+.master path:first-child {
+  fill: #03a685;
+  opacity: 0.15;
+}
+
+.star path:not(:first-child) {
+  fill: #ffbe3f;
+}
+
+.star path:first-child {
+  fill: #ffbe3f;
+  opacity: 0.15;
+}
+
+.sliderCont {
+  display: flex;
+  align-items: flex-start;
+}
+
+.sliderCont div {
+  width: 200px;
+}
