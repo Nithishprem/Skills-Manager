@@ -7,11 +7,11 @@ import Box from "@mui/material/Box";
 const marks = [
   {
     value: 0,
-    label: '0°C',
+    label: '0 %',
   },
   {
     value: 100,
-    label: '100°C',
+    label: '100 %',
   },
 ];
 
@@ -37,8 +37,8 @@ const PrettoSlider = styled(Slider)({
     border: "none"
   },
   "& .MuiSlider-thumb": {
-    height: 24,
-    width: 24,
+    height: 22,
+    width: 22,
     backgroundColor: "#F05D23",
     border: "2px solid #fff",
     "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
@@ -53,8 +53,8 @@ const PrettoSlider = styled(Slider)({
     fontSize: 12,
     background: "unset",
     padding: 0,
-    width: 32,
-    height: 32,
+    width: 30,
+    height: 30,
     borderRadius: "50% 50% 50% 0",
     backgroundColor: "#F05D23",
     transformOrigin: "bottom left",
@@ -69,18 +69,18 @@ const PrettoSlider = styled(Slider)({
   }
 });
 
- function SliderMui() {
+ function SliderMui({title, onChange }) {
   return (
     <Box sx={{ width: 320 }}>
-      <Box sx={{ m: 3 }} />
-      <Typography gutterBottom>pretto.fr</Typography>
+      <Box sx={{ m: 2 }} />
+      <Typography gutterBottom className="title">{title}</Typography>
       <PrettoSlider
         valueLabelDisplay="auto"
         aria-label="pretto slider"
-        defaultValue={20}
+        defaultValue={0}
         marks={marks}
         onChange={(e) => {
-          console.log(e.target);
+          onChange(e)
         }}
       />
     </Box>
