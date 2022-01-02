@@ -100,10 +100,11 @@ body {
   margin-bottom: 10px;
   padding-bottom: 20px;
   border-bottom: 2px solid #f2f2f2;
+  position: relative;
 }
 .skillCont .section1 {
   display: grid;
-  grid-template-columns: 150px 200px;
+  grid-template-columns: 200px 200px;
   align-items: baseline;
   margin-bottom: 20px;
 }
@@ -235,4 +236,106 @@ input[type="radio"] {
   border: none;
   display: block;
   text-align: center;
+}
+
+.submitCont {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-save {
+  padding: 8px 30px;
+}
+.btn-cancel {
+  padding: 8px 30px;
+  margin-right: 10px;
+  background-color: #f2f2f2;
+  color: #192a3e;
+}
+
+.saveSkill {
+  color: #f05d23;
+  position: absolute;
+  top: 4px;
+  right: 0;
+}
+.trash {
+  color: #f05d23;
+  position: absolute;
+  top: 4px;
+  left: -25px;
+}
+
+.login,
+.register {
+  width: 100vw;
+  max-width: 450px;
+  height: 100vh;
+  max-height: 350px;
+  background: #ffff;
+  color: #192a3e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+.loginHeader,
+.registerHeader {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+}
+
+.loginformTitle,
+.registerformTitle {
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.form-grp {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem;
+}
+
+.form-grp input {
+  border: none;
+  outline: none;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  background-color: #f2f2f2;
+  width: 300px;
+}
+.passwordGrp {
+  position: relative;
+}
+.showPassword {
+  position: absolute;
+  bottom: 15%;
+  right: 3%;
+  color: #555555;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: #f05d23;
+  padding: 0.5rem 3rem;
+  color: #ffffff;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 550;
+}
+.submit-grp {
+  display: flex;
+  justify-content: center;
+}
+
+.registerDiv {
+  margin-top: 0.5rem;
+}
+.registerLink {
+  color: #f05d23;
 }

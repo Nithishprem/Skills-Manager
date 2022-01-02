@@ -1,10 +1,15 @@
 import {FaPlus, FaMinus} from 'react-icons/fa'
 import Button from "./Button"
 import { useState } from "react"
+import { useEffect } from 'react'
 
 function Counter({title, min, max, onChange}) {
     const [count, setCount] = useState(0)
     // console.log(count)
+
+    useEffect(()=>{
+        onChange(count)
+    },[count])
 
     const decrement = ()=>{
         setCount(prev=>{
@@ -19,7 +24,7 @@ function Counter({title, min, max, onChange}) {
         })
     }
 
-    console.log('counter is rendered')
+    // console.log('counter is rendered')
     
     return (
         <>
@@ -27,8 +32,8 @@ function Counter({title, min, max, onChange}) {
             <div className="counter">
                 <Button onClick={decrement} type="button" version='counter'><FaMinus/></Button>
                 
-                <input type={'number'} value={count} min={min} max={max}/>  
-                <div className="count">&nbsp; years </div>
+                {/* <input type={'number'} value={count} min={min} max={max}/>   */}
+                <div className="count">{count}&nbsp; years </div>
                 <Button onClick={increment} type="button" version='counter'><FaPlus/></Button>
             </div>
         </>
