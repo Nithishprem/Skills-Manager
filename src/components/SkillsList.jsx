@@ -1,4 +1,4 @@
-import { useContext,useState } from "react"
+import { useContext } from "react"
 import Skill from "./Skill"
 import SkillsContext from "../context/SkillsContext"
 import Button from "./shared/Button"

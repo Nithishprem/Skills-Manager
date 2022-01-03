@@ -9,6 +9,7 @@ function Counter({title, min, max, onChange, name, id}) {
 
     useEffect(()=>{
         onChange(count,id, name)
+        // eslint-disable-next-line
     },[count])
 
     const decrement = ()=>{

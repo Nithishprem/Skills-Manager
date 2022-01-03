@@ -1,27 +1,18 @@
-import {useState,useContext} from 'react'
+import {useContext} from 'react'
 import SkillLevel from './SkillLevel'
 import SliderMui from './shared/SliderMui'
 import Counter from './shared/Counter'
 import SkillsContext from '../context/SkillsContext'
-import {FaSave,FaTrash} from 'react-icons/fa'
-import {toast} from 'react-toastify'
+import {FaTrash} from 'react-icons/fa'
 
 
 function Skill({skill}) {
-    const {addSkillDetails, deleteSkill, handleExperience, handleDetailsChange} = useContext(SkillsContext)
+    const { deleteSkill, handleExperience, handleDetailsChange} = useContext(SkillsContext)
     
-    const handleSave = ()=>{
-        if (skill.level === '') {
-            toast(`please Select your level in ${skill.name} skill`)
-            return
-        }
-        addSkillDetails(skill)
-    }
     const handleDelete = ()=>{
         deleteSkill(skill)
     }
 
-    
     return (
         <div className='skillCont'>
             <div className="section1">

@@ -82,18 +82,6 @@ export const SkillsProvider = ({children})=>{
 
     }
 
-    const addSkillDetails = (skill)=>{
-        // console.log(skill)
-        setSkills(prev=>{
-            return prev.map((item)=>{
-                if(item.id===skill.id){
-                    // console.log(skill)
-                    return skill
-                }
-                return item
-            })
-        })
-    }
 
     const deleteSkill = (skill)=>{
         setSkills(prev=>{
@@ -133,7 +121,6 @@ export const SkillsProvider = ({children})=>{
                 if(res.status !==201){
                     throw new Error(res.data)
                 }
-                const data = res.data
                 toast.success("Skills saved sucessfully") 
             }
             catch(error){
@@ -145,13 +132,9 @@ export const SkillsProvider = ({children})=>{
         skills,
         skillsOptions,
         addSkills,
-        addSkillDetails,
         deleteSkill,
         saveSkills,
         removeAllSkills,
-        // handleExpertSkill,
-        // handleSelectLevel,
-        // handleProficiency,
         handleExperience,
         handleDetailsChange
     }}>
