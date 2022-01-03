@@ -27,12 +27,14 @@ function Login() {
 
     const onSubmit = async(e)=>{
         e.preventDefault()
+        
         try{
             const res=await axios.post(`${BaseURL}/auth/login`,{
                 ...formData
             })
             const user = res.data
-            console.log(user)
+            localStorage.setItem("token", JSON.stringify(user.token))
+            
             navigate('/manageskills')
             // const auth = getAuth(app)
             // const userCredentials = await signInWithEmailAndPassword(auth, email, password)

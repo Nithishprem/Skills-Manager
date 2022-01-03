@@ -1,5 +1,10 @@
 import { useState,createContext,useRef } from "react";
 import {v4 as uuidv4} from 'uuid'
+import {toast} from 'react-toastify'
+import axios from 'axios'
+
+const BaseURL = 'http://localhost:5000/api/v1'
+
 const SkillsContext = createContext()
 
 export const SkillsProvider = ({children})=>{
@@ -62,8 +67,30 @@ export const SkillsProvider = ({children})=>{
             
         })
     }
-    const saveSkills = ()=>{
-        console.log('skills saved')
+    const saveSkills = async()=>{
+            for(let i=0; i<skills.length;i++ ){
+                if (skills[i].level===''){
+                    toast.error(`Please select ${skills[i].name} level`)
+                    console.log('error')
+                    return
+                }
+            }
+            try{
+                const token =JSON.parse(localStorage.getItem('token'))
+                const res =await axios.post(`${BaseURL}/skills`,skills,{
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
+                if(res.status !==201){
+                    throw new Error(res.data)
+                }
+                const data = res.data
+                toast.success("Skills saved sucessfully") 
+            }
+            catch(error){
+                toast.error("Sorry, there is an error saving skills")
+            }
     }
 
     return <SkillsContext.Provider value={{
