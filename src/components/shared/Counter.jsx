@@ -3,12 +3,12 @@ import Button from "./Button"
 import { useState } from "react"
 import { useEffect } from 'react'
 
-function Counter({title, min, max, onChange}) {
+function Counter({title, min, max, onChange, name, id}) {
     const [count, setCount] = useState(0)
     // console.log(count)
 
     useEffect(()=>{
-        onChange(count)
+        onChange(count,id, name)
     },[count])
 
     const decrement = ()=>{

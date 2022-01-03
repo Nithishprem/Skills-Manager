@@ -42,6 +42,103 @@ export const SkillsProvider = ({children})=>{
         // console.log(newSkillsCopy)
     }
 
+    // const handleExpertSkill = (e,id)=>{
+    //     console.log(typeof e.target.id,id,e.target.value)
+    //     let boolean = null
+    //     if(e.target.value ==='true'){
+    //         boolean = true
+    //     }
+    //     if(e.target.value ==='false'){
+    //         boolean = false
+    //     }
+    //     setSkills(prev=>{
+    //         return prev.map((item)=>{
+    //             if(item.id===id){
+    //                 // console.log(skill)
+    //                 console.log(item,boolean)
+    //                 return ({
+    //                     ...item,
+    //                     [e.target.id]: !boolean ?? e.target.value
+    //                 })
+    //             }
+    //             return item
+    //         })
+    //     })
+
+    // }
+    // const handleSelectLevel = (e, id)=>{
+    //     console.log(e.target.value)
+    //     setSkills(prev=>{
+    //         return prev.map((item)=>{
+    //             if(item.id===id){
+    //                 // console.log(skill)
+    //                 console.log(item,id)
+    //                 return ({
+    //                     ...item,
+    //                     level: e.target.value
+    //                 })
+    //             }
+    //             return item
+    //         })
+    //     })
+    // }
+
+    // const handleProficiency = (e, id,name)=>{
+    //     console.log(e.target.value,id,name)
+    //     setSkills(prev=>{
+    //         return prev.map((item)=>{
+    //             if(item.id===id){
+    //                 // console.log(skill)
+    //                 console.log(item,id)
+    //                 return ({
+    //                     ...item,
+    //                     proficiency: e.target.value
+    //                 })
+    //             }
+    //             return item
+    //         })
+    //     })
+    // }
+
+    const handleExperience = (count, id,name)=>{
+        // console.log(count,id,name)
+        setSkills(prev=>{
+            return prev.map((item)=>{
+                if(item.id===id){
+                    console.log(item,id)
+                    return ({
+                        ...item,
+                        [name]: count
+                    })
+                }
+                return item
+            })
+        })
+    }
+
+    const handleDetailsChange = (e,id,name)=>{
+        // console.log(name,id,e.target.value)
+        let boolean = null
+        if(e.target.value ==='true'){
+            boolean = false
+        }
+        if(e.target.value ==='false'){
+            boolean = true
+        }
+        setSkills(prev=>{
+            return prev.map((item)=>{
+                if(item.id===id){
+                    return ({
+                        ...item,
+                        [name]: boolean ?? e.target.value
+                    })
+                }
+                return item
+            })
+        })
+
+    }
+
     const addSkillDetails = (skill)=>{
         // console.log(skill)
         setSkills(prev=>{
@@ -67,10 +164,27 @@ export const SkillsProvider = ({children})=>{
             
         })
     }
+
+    const removeAllSkills = ()=>{
+        // skills.forEach(skill=>{
+        //     setSkillsOptions(prev=>{
+        //         return [
+        //             ...prev,
+        //             {value:skill.name, label: skill.name}
+        //         ]
+                
+        //     })
+        // })
+        setSkills([])
+        setSkillsOptions(allOptions.current)
+        console.log('skills removed')
+    }
     const saveSkills = async()=>{
             for(let i=0; i<skills.length;i++ ){
                 if (skills[i].level===''){
-                    toast.error(`Please select ${skills[i].name} level`)
+                    toast.error(`Please select your level in ${skills[i].name} skill`,{
+                        position: toast.POSITION.BOTTOM_CENTER
+                      })
                     console.log('error')
                     return
                 }
@@ -99,8 +213,13 @@ export const SkillsProvider = ({children})=>{
         addSkills,
         addSkillDetails,
         deleteSkill,
-        saveSkills
-
+        saveSkills,
+        removeAllSkills,
+        // handleExpertSkill,
+        // handleSelectLevel,
+        // handleProficiency,
+        handleExperience,
+        handleDetailsChange
     }}>
         {children}
     </SkillsContext.Provider>

@@ -4,17 +4,28 @@ import {ReactComponent as AdvancedIcon} from './assets/AdvancedIcon.svg'
 import {ReactComponent as ExpertIcon} from './assets/ExpertIcon.svg'
 import {ReactComponent as MasterIcon} from './assets/MasterIcon.svg'
 import {ReactComponent as StarIcon} from './assets/StarIcon.svg'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
-function SkillLevel({id, selectLevel}) {
+function SkillLevel({id, selectLevel, name}) {
     const [selected, setSelected]=useState('')
 
     const handleChange = (e)=>{
         setSelected(prev=>e.target.value)
-        selectLevel(e.target.value)
+        console.log(name)
+        selectLevel(e,id, name)
     }
     return (
         <div className="skillLevelCont">
+            <div className="titleCont">
             <div className="title">Select your Level</div>
+            <Tooltip title="You can choose your level in skill" placement='right'>
+                <IconButton>
+                    <HelpOutlineIcon style={{color: '#f05d23'}} />
+                </IconButton>
+            </Tooltip>
+            </div>
             <ul className="skillLevel">
                 <li>
                     <input type="radio" id="Beginner" name={id} 

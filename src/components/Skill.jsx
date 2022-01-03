@@ -8,54 +8,17 @@ import {toast} from 'react-toastify'
 
 
 function Skill({skill}) {
-    const [skillDetails, setSkillDetails]=useState(skill)
-    const {addSkillDetails, deleteSkill} = useContext(SkillsContext)
+    const {addSkillDetails, deleteSkill, handleExperience, handleDetailsChange} = useContext(SkillsContext)
     
-    const handleChange = (e)=>{
-        // console.log(e.target.value,e.target.id,e.target)
-        let boolean = null
-        if(e.target.value ==='true'){
-            boolean = true
-        }
-        if(e.target.value ==='false'){
-            boolean = false
-        }
-
-        setSkillDetails(prev=>({
-            ...prev,
-            [e.target.id]: !boolean ?? e.target.value
-        }))
-    }
-
-    const handleSelectLevel = (val)=>{
-        setSkillDetails(prev=>({
-            ...prev,
-            level: val
-        }))
-    }
-    const handleProficiency = (e)=>{
-        setSkillDetails(prev=>({
-            ...prev,
-            proficiency: e.target.value
-        }))
-    }
-    const handleExperience = (count)=>{
-        // console.log(count)
-        setSkillDetails(prev=>({
-            ...prev,
-            experience: count
-        }))
-    }
-
     const handleSave = ()=>{
-        if (skillDetails.level === '') {
-            toast(`please Select your level in ${skillDetails.name} skill`)
+        if (skill.level === '') {
+            toast(`please Select your level in ${skill.name} skill`)
             return
         }
-        addSkillDetails(skillDetails)
+        addSkillDetails(skill)
     }
     const handleDelete = ()=>{
-        deleteSkill(skillDetails)
+        deleteSkill(skill)
     }
 
     
@@ -65,23 +28,23 @@ function Skill({skill}) {
                 <div className="heading">{skill.name}</div>
                 <div className="expertCont">
                 <input type="checkbox" id="expertSkill" 
-                value={skillDetails.expertSkill} 
-                onChange={handleChange}/>
+                value={skill.expertSkill} 
+                onChange={(e)=>handleDetailsChange(e,skill.id, 'expertSkill')}/>
                 <label htmlFor="expertCheck">{'Mark this as Expert level'}
           </label>
                 </div>
             </div>
             <div className="section2">
-                <SkillLevel level={skillDetails.level} id={skillDetails.id} selectLevel={(val)=>handleSelectLevel(val)}/>
+                <SkillLevel level={skill.level} id={skill.id} name={"level"} selectLevel={(val,id,name)=>handleDetailsChange(val,id,name)}/>
                 <div className='sliderCont'>
-                    <SliderMui title={'Proficiency'} onChange={handleProficiency}/>
+                    <SliderMui title={'Proficiency'} id={skill.id} name={"proficiency"} onChange={handleDetailsChange}/>
                 </div>
                 <div className="experienceCont">
-                    <Counter title={'Years of experience'} min={0} max={10} onChange={(count)=>handleExperience(count)}/>
+                    <Counter title={'Years of experience'} min={0} max={10} id={skill.id} name={"experience"} onChange={(count,id,name)=>handleExperience(count,id,name)}/>
                 </div>
             </div>
             {/* <div className="btn" onClick={handleEdit}>item</div> */}
-        <FaSave onClick={handleSave} className='saveSkill'/>
+        {/* <FaSave onClick={handleSave} className='saveSkill'/> */}
         <FaTrash onClick={handleDelete} className='trash'/>
         </div>
     )

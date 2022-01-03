@@ -1,8 +1,8 @@
 import {useState, useContext, useRef} from 'react'
 import Select from 'react-select'
 import Button from './shared/Button'
-import {FaPlusCircle} from 'react-icons/fa'
 import SkillsContext from '../context/SkillsContext'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 function AddSkillForm() {
     const { addSkills, skillsOptions } = useContext(SkillsContext)
@@ -22,8 +22,6 @@ function AddSkillForm() {
         const newSkills = selectedOptions.map(skill=>skill.value)
         addSkills(newSkills)
         selectRef.current.clearValue()
-        // console.log(selectRef.current.getValue());
-
     }
     
     return (
@@ -38,7 +36,7 @@ function AddSkillForm() {
                 onChange={onChange}/>
 
             <Button type="submit">
-                <FaPlusCircle className='plusIcon'/>
+                <AddCircleOutlineIcon className='plusIcon'/>
                 <div>Add New Skills</div>
             </Button>
         </form>

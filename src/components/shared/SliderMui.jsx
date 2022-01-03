@@ -3,6 +3,10 @@ import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+
 
 const marks = [
   {
@@ -69,18 +73,26 @@ const PrettoSlider = styled(Slider)({
   }
 });
 
- function SliderMui({title, onChange }) {
+ function SliderMui({title, onChange,id, name }) {
   return (
     <Box sx={{ width: 320 }}>
       <Box sx={{ m: 2 }} />
-      <Typography gutterBottom className="title">{title}</Typography>
+      <div className="titleCont">
+        <Typography gutterBottom className="title">{title}</Typography>
+            <Tooltip title="You can choose your proficiency % in skill" placement='right'>
+                <IconButton>
+                    <HelpOutlineIcon style={{color: '#f05d23'}} />
+                </IconButton>
+            </Tooltip>
+        </div>
       <PrettoSlider
         valueLabelDisplay="auto"
         aria-label="pretto slider"
         defaultValue={0}
         marks={marks}
         onChange={(e) => {
-          onChange(e)
+          console.log(id)
+          onChange(e,id,name)
         }}
       />
     </Box>
