@@ -4,7 +4,7 @@ import {FaEye} from 'react-icons/fa'
 import {toast} from 'react-toastify'
 import axios from 'axios'
 
-const BaseURL = 'http://localhost:5000/api/v1'
+const BaseURL = 'https://skills-api.herokuapp.com/api/v1'
 
 function Register() {
     const [showPassword, setShowPassword] = useState(false)

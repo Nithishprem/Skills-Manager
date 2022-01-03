@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid'
 import {toast} from 'react-toastify'
 import axios from 'axios'
 
-const BaseURL = 'http://localhost:5000/api/v1'
+const BaseURL = 'https://skills-api.herokuapp.com/api/v1'
 
 const SkillsContext = createContext()
 
