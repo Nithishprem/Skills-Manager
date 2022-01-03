@@ -35,16 +35,18 @@ function Skill({skill}) {
                 </div>
             </div>
             <div className="section2">
-                <SkillLevel level={skill.level} id={skill.id} name={"level"} selectLevel={(val,id,name)=>handleDetailsChange(val,id,name)}/>
+                <SkillLevel level={skill.level} id={skill.id} name={"level"} 
+                selectLevel={(val,id,name)=>handleDetailsChange(val,id,name)}/>
                 <div className='sliderCont'>
-                    <SliderMui title={'Proficiency'} id={skill.id} name={"proficiency"} onChange={handleDetailsChange}/>
+                    <SliderMui title={'Proficiency'} id={skill.id} name={"proficiency"} 
+                    onChange={handleDetailsChange}/>
                 </div>
                 <div className="experienceCont">
-                    <Counter title={'Years of experience'} min={0} max={10} id={skill.id} name={"experience"} onChange={(count,id,name)=>handleExperience(count,id,name)}/>
+                    <Counter title={'Years of experience'} min={0} max={10} 
+                    id={skill.id} name={"experience"} 
+                    onChange={(count,id,name)=>handleExperience(count,id,name)}/>
                 </div>
             </div>
-            {/* <div className="btn" onClick={handleEdit}>item</div> */}
-        {/* <FaSave onClick={handleSave} className='saveSkill'/> */}
         <FaTrash onClick={handleDelete} className='trash'/>
         </div>
     )

@@ -13,7 +13,6 @@ function SkillLevel({id, selectLevel, name}) {
 
     const handleChange = (e)=>{
         setSelected(prev=>e.target.value)
-        console.log(name)
         selectLevel(e,id, name)
     }
     return (

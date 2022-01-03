@@ -19,20 +19,6 @@ const marks = [
   },
 ];
 
-// function ValueLabelComponent(props) {
-//   const { children, value } = props;
-
-//   return (
-//     <Tooltip enterTouchDelay={0} placement="top" title={value}>
-//       {children}
-//     </Tooltip>
-//   );
-// }
-
-// ValueLabelComponent.propTypes = {
-//   children: PropTypes.element.isRequired,
-//   value: PropTypes.number.isRequired
-// };
 
 const PrettoSlider = styled(Slider)({
   color: "#F05D23",
@@ -91,7 +77,6 @@ const PrettoSlider = styled(Slider)({
         defaultValue={0}
         marks={marks}
         onChange={(e) => {
-          console.log(id)
           onChange(e,id,name)
         }}
       />

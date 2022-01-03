@@ -1,10 +1,11 @@
-import {useState } from 'react'
+import {useState,useContext } from 'react'
 import {useNavigate,Link} from 'react-router-dom'
 import {FaEye} from 'react-icons/fa'
 import {toast} from 'react-toastify'
 import axios from 'axios'
+import UserContext from '../context/UserContext'
 
-const BaseURL = 'http://localhost:5000/api/v1'
+const BaseURL = 'https://skills-api.herokuapp.com/api/v1'
 
 function Register() {
     const [showPassword, setShowPassword] = useState(false)
@@ -13,6 +14,7 @@ function Register() {
         email: '',
         password: '',
     })
+    const {setUser} = useContext(UserContext)
     const navigate = useNavigate()
 
     const {name,email, password} = formData
@@ -32,21 +34,11 @@ function Register() {
         try{
             const res= await axios.post(`${BaseURL}/auth/register`,{...formData})
             const user = res.data
-            console.log(user)
+            // console.log(user)
+            setUser(user.user.name)
             navigate('/manageskills')
 
-            // const auth = getAuth()
-            // const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
-            // if(userCredentials.user){
-            //     updateProfile(auth.currentUser, {
-            //         displayName: name
-            //     })
-                
-            //     navigate('/main')
-            // }
-
         }catch(error){
-            // console.log(error.message.split('/')[1])
             console.log(error)
             const Message = error.message
             if(Message === 'email-already-in-use'){

@@ -1,10 +1,11 @@
-import {useState } from 'react'
+import {useState,useContext } from 'react'
 import {useNavigate,Link} from 'react-router-dom'
 import {FaEye} from 'react-icons/fa'
 import {toast} from 'react-toastify'
 import axios from 'axios'
+import UserContext from '../context/UserContext'
 
-const BaseURL = 'http://localhost:5000/api/v1'
+const BaseURL = 'https://skills-api.herokuapp.com/api/v1'
 
 function Login() {
     const [showPassword, setShowPassword] = useState(false)
@@ -12,6 +13,8 @@ function Login() {
         email: '',
         password: '',
     })
+
+    const {setUser} = useContext(UserContext)
     const navigate = useNavigate()
 
     const {email, password} = formData
@@ -33,14 +36,11 @@ function Login() {
                 ...formData
             })
             const user = res.data
+            // console.log(user.user.name)
+            setUser(user.user.name)
             localStorage.setItem("token", JSON.stringify(user.token))
             
             navigate('/manageskills')
-            // const auth = getAuth(app)
-            // const userCredentials = await signInWithEmailAndPassword(auth, email, password)
-            // if(userCredentials.user){
-                // navigate('/main')
-            // }
 
         }catch(error){
             console.log(error)

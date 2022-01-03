@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid'
 import {toast} from 'react-toastify'
 import axios from 'axios'
 
-const BaseURL = 'http://localhost:5000/api/v1'
+const BaseURL = 'https://skills-api.herokuapp.com/api/v1'
 
 const SkillsContext = createContext()
 
@@ -42,70 +42,13 @@ export const SkillsProvider = ({children})=>{
         // console.log(newSkillsCopy)
     }
 
-    // const handleExpertSkill = (e,id)=>{
-    //     console.log(typeof e.target.id,id,e.target.value)
-    //     let boolean = null
-    //     if(e.target.value ==='true'){
-    //         boolean = true
-    //     }
-    //     if(e.target.value ==='false'){
-    //         boolean = false
-    //     }
-    //     setSkills(prev=>{
-    //         return prev.map((item)=>{
-    //             if(item.id===id){
-    //                 // console.log(skill)
-    //                 console.log(item,boolean)
-    //                 return ({
-    //                     ...item,
-    //                     [e.target.id]: !boolean ?? e.target.value
-    //                 })
-    //             }
-    //             return item
-    //         })
-    //     })
-
-    // }
-    // const handleSelectLevel = (e, id)=>{
-    //     console.log(e.target.value)
-    //     setSkills(prev=>{
-    //         return prev.map((item)=>{
-    //             if(item.id===id){
-    //                 // console.log(skill)
-    //                 console.log(item,id)
-    //                 return ({
-    //                     ...item,
-    //                     level: e.target.value
-    //                 })
-    //             }
-    //             return item
-    //         })
-    //     })
-    // }
-
-    // const handleProficiency = (e, id,name)=>{
-    //     console.log(e.target.value,id,name)
-    //     setSkills(prev=>{
-    //         return prev.map((item)=>{
-    //             if(item.id===id){
-    //                 // console.log(skill)
-    //                 console.log(item,id)
-    //                 return ({
-    //                     ...item,
-    //                     proficiency: e.target.value
-    //                 })
-    //             }
-    //             return item
-    //         })
-    //     })
-    // }
+    
 
     const handleExperience = (count, id,name)=>{
         // console.log(count,id,name)
         setSkills(prev=>{
             return prev.map((item)=>{
                 if(item.id===id){
-                    console.log(item,id)
                     return ({
                         ...item,
                         [name]: count
@@ -166,15 +109,6 @@ export const SkillsProvider = ({children})=>{
     }
 
     const removeAllSkills = ()=>{
-        // skills.forEach(skill=>{
-        //     setSkillsOptions(prev=>{
-        //         return [
-        //             ...prev,
-        //             {value:skill.name, label: skill.name}
-        //         ]
-                
-        //     })
-        // })
         setSkills([])
         setSkillsOptions(allOptions.current)
         console.log('skills removed')
