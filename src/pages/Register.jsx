@@ -79,7 +79,7 @@ function Register() {
                     </div>
                 </div>
                 <div className="form-grp submit-grp">
-                <button type='submit' className='btn submit-btn'>Submit</button>
+                <button type='submit' className='btn submit-btn'>{isLoading? 'Loading...': 'Submit'}</button>
 
                 </div>
             </form>
