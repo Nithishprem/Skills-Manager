@@ -9,6 +9,7 @@ const SkillsContext = createContext()
 
 export const SkillsProvider = ({children})=>{
     const [skills, setSkills] = useState([])
+    const [isSaving, setIsSaving]= useState(false)
     const [skillsOptions, setSkillsOptions]=useState([
         {value:'Graphic-design', label: 'Graphic design'},
         {value:'React', label: 'React Js'},
@@ -112,6 +113,7 @@ export const SkillsProvider = ({children})=>{
                 }
             }
             try{
+                setIsSaving(true)
                 const token =JSON.parse(localStorage.getItem('token'))
                 const res =await axios.post(`${BaseURL}/skills`,skills,{
                 headers: {
@@ -121,9 +123,12 @@ export const SkillsProvider = ({children})=>{
                 if(res.status !==201){
                     throw new Error(res.data)
                 }
+                setIsSaving(false)
+                setSkills([])
                 toast.success("Skills saved sucessfully") 
             }
             catch(error){
+                setIsSaving(false)
                 toast.error("Sorry, there is an error saving skills")
             }
     }
@@ -131,6 +136,7 @@ export const SkillsProvider = ({children})=>{
     return <SkillsContext.Provider value={{
         skills,
         skillsOptions,
+        isSaving,
         addSkills,
         deleteSkill,
         saveSkills,

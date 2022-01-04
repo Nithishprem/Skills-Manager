@@ -14,6 +14,7 @@ function Register() {
         email: '',
         password: '',
     })
+    const [isLoading, setIsLoading]=useState(false)
     const {setUser} = useContext(UserContext)
     const navigate = useNavigate()
 
@@ -30,12 +31,15 @@ function Register() {
 
     const onSubmit = async(e)=>{
         e.preventDefault()
-        console.log(formData)
+        // console.log(formData)
         try{
+            setIsLoading(true)
             const res= await axios.post(`${BaseURL}/auth/register`,{...formData})
             const user = res.data
             // console.log(user)
+            setIsLoading(false)
             setUser(user.user.name)
+
             navigate('/manageskills')
 
         }catch(error){
@@ -46,6 +50,7 @@ function Register() {
             }else{
                 toast.error(Message)
             }
+            setIsLoading(false)
             toast.error('could not ceate user!')
         }
     }

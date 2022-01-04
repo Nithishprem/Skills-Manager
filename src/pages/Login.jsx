@@ -13,6 +13,7 @@ function Login() {
         email: '',
         password: '',
     })
+    const [isLoading, setIsLoading]=useState(false)
 
     const {setUser} = useContext(UserContext)
     const navigate = useNavigate()
@@ -32,6 +33,7 @@ function Login() {
         e.preventDefault()
         
         try{
+            setIsLoading(true)
             const res=await axios.post(`${BaseURL}/auth/login`,{
                 ...formData
             })
@@ -39,12 +41,14 @@ function Login() {
             // console.log(user.user.name)
             setUser(user.user.name)
             localStorage.setItem("token", JSON.stringify(user.token))
+            setIsLoading(false)
             
             navigate('/manageskills')
 
         }catch(error){
             console.log(error)
             toast.error('Please provide valid credentials!')
+            setIsLoading(false)
         }
     }
     
@@ -68,7 +72,7 @@ function Login() {
                     </div>
                 </div>
                 <div className="form-grp submit-grp">
-                <button type='submit' className='btn submit-btn'>Submit</button>
+                <button type='submit' className='btn submit-btn'>{isLoading? 'Loading...':'Submit'}</button>
 
                 </div>
             </form>
