@@ -1,7 +1,9 @@
 import { useContext } from "react"
+import {AnimatePresence, motion} from 'framer-motion'
 import Skill from "./Skill"
 import SkillsContext from "../context/SkillsContext"
 import Button from "./shared/Button"
+
 
 
 function SkillsList() {
@@ -19,9 +21,17 @@ function SkillsList() {
     return (
         <>
         <div className="skillsList">
-            {skills.map((skill,i)=>{
-                return <Skill key={skill.id} skill={skill} />
-            })}
+            <AnimatePresence>
+            {skills.map((skill)=>(
+                <motion.div 
+                key={skill.id}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                exit={{opacity: 0}}>
+                <Skill key={skill.id} skill={skill} />
+                </motion.div>
+            ))}
+            </AnimatePresence>
         </div>
         <div className="submitCont">
             <Button version="primary btn-cancel" onClick={handleRemove}>Cancel</Button>

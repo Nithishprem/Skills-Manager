@@ -37,8 +37,9 @@ function Register() {
             const res= await axios.post(`${BaseURL}/auth/register`,{...formData})
             const user = res.data
             // console.log(user)
-            setIsLoading(false)
+            localStorage.setItem("token", JSON.stringify(user.token))
             setUser(user.user.name)
+            setIsLoading(false)
 
             navigate('/manageskills')
 
