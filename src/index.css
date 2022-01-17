@@ -339,6 +339,10 @@ input[type="radio"] {
   font-size: 0.9rem;
   font-weight: 550;
 }
+.btn-disabled {
+  background-color: #ce8569;
+}
+
 .submit-grp {
   display: flex;
   justify-content: center;
@@ -349,4 +353,8 @@ input[type="radio"] {
 }
 .registerLink {
   color: #f05d23;
+}
+
+.emptyList {
+  text-align: center;
 }

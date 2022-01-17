@@ -10,15 +10,16 @@ const SkillsContext = createContext()
 export const SkillsProvider = ({children})=>{
     const [skills, setSkills] = useState([])
     const [isSaving, setIsSaving]= useState(false)
+    const [btnDisabled, setBtnDisabled]= useState(false)
     const [skillsOptions, setSkillsOptions]=useState([
         {value:'Graphic-design', label: 'Graphic design'},
-        {value:'React', label: 'React Js'},
+        {value:'React', label: 'React'},
         {value:'Express', label: 'Express'},
         {value:'Javascript', label: 'Javascript'},
     ])
     const allOptions=useRef([
         {value:'Graphic-design', label: 'Graphic design'},
-        {value:'React', label: 'React Js'},
+        {value:'React', label: 'React'},
         {value:'Express', label: 'Express'},
         {value:'Javascript', label: 'Javascript'},
     ])
@@ -38,7 +39,16 @@ export const SkillsProvider = ({children})=>{
             return [...prev,...newSkillsCopy]
         })
         setSkillsOptions(prev=>{
-            return prev.filter(item=>newSkills.indexOf(item.value) === -1)
+            return prev.map(item=>{
+                if(newSkills.indexOf(item.value) === -1){
+                    return item
+                }else{
+                    return {
+                        ...item,
+                        isDisabled: true
+                    }
+                }
+            })
         })
         // console.log(newSkillsCopy)
     }
@@ -89,11 +99,16 @@ export const SkillsProvider = ({children})=>{
             return prev.filter((item)=>item.id!==skill.id)
         })
         setSkillsOptions(prev=>{
-            return [
-                ...prev,
-                {value:skill.name, label: skill.name}
-            ]
-            
+            return prev.map(item=>{
+                if(skill.name.indexOf(item.value) === -1){
+                    return item
+                }else{
+                    return {
+                        value: item.value,
+                        label: item.label
+                    }
+                }
+            })
         })
     }
 
@@ -114,6 +129,7 @@ export const SkillsProvider = ({children})=>{
             }
             try{
                 setIsSaving(true)
+                setBtnDisabled(true)
                 const token =JSON.parse(localStorage.getItem('token'))
                 const res =await axios.post(`${BaseURL}/skills`,skills,{
                 headers: {
@@ -124,12 +140,14 @@ export const SkillsProvider = ({children})=>{
                     throw new Error(res.data)
                 }
                 setIsSaving(false)
+                setBtnDisabled(false)
                 setSkills([])
                 toast.success("Skills saved sucessfully") 
             }
             catch(error){
                 setIsSaving(false)
-                toast.error("Sorry, there is an error saving skills")
+                setBtnDisabled(false)
+                toast.error("There is an error saving skills. Please try again")
             }
     }
 
@@ -137,6 +155,7 @@ export const SkillsProvider = ({children})=>{
         skills,
         skillsOptions,
         isSaving,
+        btnDisabled,
         addSkills,
         deleteSkill,
         saveSkills,

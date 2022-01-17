@@ -7,7 +7,7 @@ import Button from "./shared/Button"
 
 
 function SkillsList() {
-    const {skills,isSaving, saveSkills,removeAllSkills} = useContext(SkillsContext)
+    const {skills,isSaving, saveSkills,removeAllSkills, btnDisabled} = useContext(SkillsContext)
     // const [skillstemptList, setSkillstempList] = useState(skills)
 
     const handleSave = ()=>{
@@ -18,6 +18,9 @@ function SkillsList() {
         removeAllSkills()
     }
 
+    if(!skills ||skills.length ===0){
+        return <h4 className="emptyList">No skills selected.Please select skills to display here</h4>
+    }
     return (
         <>
         <div className="skillsList">
@@ -35,7 +38,7 @@ function SkillsList() {
         </div>
         <div className="submitCont">
             <Button version="primary btn-cancel" onClick={handleRemove}>Cancel</Button>
-        <Button version="primary btn-save" onClick={handleSave}>{isSaving ? 'Saving...': 'Save'}</Button>
+        <Button version="primary btn-save" onClick={handleSave} isDisabled={btnDisabled}>{isSaving ? 'Saving...': 'Save'}</Button>
         </div>
         </>
     )

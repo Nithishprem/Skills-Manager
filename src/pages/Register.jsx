@@ -15,6 +15,7 @@ function Register() {
         password: '',
     })
     const [isLoading, setIsLoading]=useState(false)
+    const [isDisabled, setIsDisabled]=useState(false)
     const {setUser} = useContext(UserContext)
     const navigate = useNavigate()
 
@@ -34,12 +35,15 @@ function Register() {
         // console.log(formData)
         try{
             setIsLoading(true)
+            setIsDisabled(true)
             const res= await axios.post(`${BaseURL}/auth/register`,{...formData})
             const user = res.data
             // console.log(user)
             localStorage.setItem("token", JSON.stringify(user.token))
+            localStorage.setItem("user", JSON.stringify(user.user))
             setUser(user.user.name)
             setIsLoading(false)
+            setIsDisabled(false)
 
             navigate('/manageskills')
 
@@ -52,6 +56,7 @@ function Register() {
                 toast.error(Message)
             }
             setIsLoading(false)
+            setIsDisabled(false)
             toast.error('could not ceate user!')
         }
     }
@@ -80,7 +85,7 @@ function Register() {
                     </div>
                 </div>
                 <div className="form-grp submit-grp">
-                <button type='submit' className='btn submit-btn'>{isLoading? 'Loading...': 'Submit'}</button>
+                <button type='submit' className={`btn submit-btn ${isDisabled ?'btn-disabled':''}`} disabled={isDisabled}>{isLoading? 'Loading...': 'Submit'}</button>
 
                 </div>
             </form>

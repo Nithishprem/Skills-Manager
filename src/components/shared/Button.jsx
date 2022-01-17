@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-function Button({children, type, version, onClick}) {
+function Button({children, type, version, onClick, isDisabled}) {
     return (
-        <button type={type} className={`btn btn-${version}`} onClick={onClick}>{children}</button>
+        <button type={type} className={`btn btn-${version}`} onClick={onClick} disabled={isDisabled}>{children}</button>
     )
 }
 

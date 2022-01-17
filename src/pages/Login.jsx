@@ -14,6 +14,7 @@ function Login() {
         password: '',
     })
     const [isLoading, setIsLoading]=useState(false)
+    const [isDisabled, setIsDisabled]=useState(false)
 
     const {setUser} = useContext(UserContext)
     const navigate = useNavigate()
@@ -34,6 +35,7 @@ function Login() {
         
         try{
             setIsLoading(true)
+            setIsDisabled(true)
             const res=await axios.post(`${BaseURL}/auth/login`,{
                 ...formData
             })
@@ -41,7 +43,9 @@ function Login() {
             // console.log(user.user.name)
             setUser(user.user.name)
             localStorage.setItem("token", JSON.stringify(user.token))
+            localStorage.setItem("user", JSON.stringify(user.user))
             setIsLoading(false)
+            setIsDisabled(false)
             
             navigate('/manageskills')
 
@@ -49,6 +53,7 @@ function Login() {
             console.log(error)
             toast.error('Please provide valid credentials!')
             setIsLoading(false)
+            setIsDisabled(false)
         }
     }
     
@@ -60,19 +65,19 @@ function Login() {
                 <div className="loginformTitle">Login</div>
                 <div className="form-grp">
                     <label htmlFor="email" className="emailLabel">Email Id &nbsp;: &nbsp;</label>
-                    <input type="email" id="email" name="email"value={email} onChange={onChange}/>
+                    <input type="email" id="email" name="email"value={email} onChange={onChange} required/>
                 </div>
                 <div className="form-grp passwordGrp">
                     <label htmlFor="password" className="passwordLabel">Password : </label>
                     <input type={showPassword ? 'text': 'password'} id="password" 
-                    name="password" value={password} onChange={onChange}/>
+                    name="password" value={password} onChange={onChange} required/>
                     <div className='showPassword' 
                         onClick={()=>setShowPassword((prevState)=>!prevState)}>
                          <FaEye/>
                     </div>
                 </div>
                 <div className="form-grp submit-grp">
-                <button type='submit' className='btn submit-btn'>{isLoading? 'Loading...':'Submit'}</button>
+                <button type='submit' className={`btn submit-btn ${isDisabled ?'btn-disabled':''}`} disabled={isDisabled}>{isLoading? 'Loading...':'Submit'}</button>
 
                 </div>
             </form>
